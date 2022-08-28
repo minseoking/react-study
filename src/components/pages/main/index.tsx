@@ -6,6 +6,7 @@ import {useRecoilValue} from "recoil";
 import atom from "../../../recoil/user/atom";
 import {ConditionModel} from "../../../models/ConditionModel";
 import {MainModel} from "../../../models/MainModel";
+import MainTemplate from "../../templates/MainTemplate";
 
 
 const Main = () => {
@@ -43,9 +44,11 @@ const Main = () => {
     }, [user]);
 
     return (
-        <GeneralTemplate>
-
-        </GeneralTemplate>
+        <MainTemplate>
+            {items.map((item, index) => (
+                <div key={index}>{item.message}</div>)
+            )}
+        </MainTemplate>
     )
 }
 

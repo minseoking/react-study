@@ -5,7 +5,7 @@ import atom from "../../recoil/user/atom";
 import LocalStorage from "../../library/localStorage";
 import {UserModel} from "../../models/UserModel";
 import {useNavigate} from "react-router";
-import {BottomNavigation, BottomNavigationAction, Button} from "@material-ui/core";
+import {AppBar, BottomNavigation, BottomNavigationAction, Button, Tab, Tabs} from "@material-ui/core";
 
 interface GeneralTemplateProps {
 }
@@ -52,23 +52,20 @@ const GeneralTemplate = ({children}: PropsWithChildren<GeneralTemplateProps>) =>
 
     return (
         <div id='wrapper'>
-            <a>이름 ({user.UserIdentity})</a>
+            <a>이름 ({user.UserIdentity || '아이디'})</a>
             <Button variant="contained" onClick={onClickLogout}>
                 로그아웃
             </Button>
-            {children}
-
-            <BottomNavigation
-                showLabels
-                value={value}
-                onChange={(event, newValue) => {
+            <AppBar position="static" >
+                <Tabs value={value} onChange={(event, newValue) => {
                     setValue(newValue);
-                }}
-            >
-                {menus.map(menu => (
-                    <BottomNavigationAction label={menu.name} key={menu.id}></BottomNavigationAction>
-                ))}
-            </BottomNavigation>
+                }} aria-label="Main Tabs">
+                    {menus.map(menu => (
+                        <Tab label={menu.name} key={menu.id}></Tab>
+                    ))}
+                </Tabs>
+            </AppBar>
+            {children}
         </div>
     )
 }

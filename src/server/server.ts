@@ -10,7 +10,7 @@ class Server {
 
     private router () {
         this.app.get('/api', (req: Request, res: Response) => {
-            res.json({ Success: true,Result:[{item:'one'},{item:'two'}] })
+            res.json({ Success: true,Result:[{message:'one'},{message:'two'}] })
         })
 
         this.app.post('/api/login', (req: Request, res: Response) => {
